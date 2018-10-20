@@ -27,31 +27,34 @@ like the following:
 \begin{itemize}
 \item Reduce ``noise'' (noise is application-specific; whatever you do
   not care about.) 
-\item Increase computational efficiency
+\item Increase computational efficiency.
+\item Save more space.
 \end{itemize}
 
 \textbf{Metric Embedding}:
 \begin{itemize}
 \item Given a metric space $(X,\rho)$, want to "embed" it into a
-  "normed" space $\underbrace{(R^d,l_p)}_{l^p_\rho}$. 
-\item Computational efficiency
+  "normed" space $\underbrace{(R^d,l_p)}_{l^d_p}$. 
+\item Computational efficiency.
 \end{itemize}
 
 The goal for an \emph{embedding} is a function
 $f:\mathbf{X}\rightarrow \mathbb{R}^d$, where $\forall u,v \in
-\mathbf{X}$, $||f(u)-f(v)||_{l_p^\rho} \approx p(u,v)$. 
-The bad news: in general, there are finite metric spaces
+\mathbf{X}$, $||f(u)-f(v)||_{l_p^d} \approx \rho(u,v)$. And it's especially great if $\forall \mathbf{(X,\rho)}, \exists f:\mathbf{X}\rightarrow R^d, s.t. \forall x, x' \in \mathbf{X}, \rho(x,x')=||f(x)-f(x')||_{l_2^d}$, since we are familiar with the Euclidean space. However,
+The bad news is: in general, there are finite metric spaces
 $(\mathbf{X},p)$, where $\mathbf{X}$ is a $n$-point metric space, that
 cannot be isometrically embedded into $l_2^d$ for any $d$ (in other
 word, no embeddings preserve distance exactly). See the following
-figure for an example. 
+figure for an example. \\
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.5\textwidth]{chapter_5/files/unembeddable.jpg}
 \caption{An illustration of not embeddable distance matrix}
 \end{center}
 \end{figure}
-
+\begin{proof}
+We prove it by contradiction. Assume we can embed $x_1, x_2, x_3, x_4$ into a Euclidean space. According to the triangle inequality,  $x_1 ,x_2, x_3$, $x_1, x_2, x_3$, $x_1, x_3, x_4$ are all collinear. Thus, $x_1, x_2, x_3, x_4$ are collinear with each other. However, no matter how we arrange the 4 points in a line, we cannot make the distance between one point and other three points equal. Thus there is a contradiction.
+\end{proof}
 \begin{definition}
 Given two metric space $(X,\rho), (Y,\sigma)$. A mapping $f:
 X\rightarrow Y$ is called a \emph{$D$-embedding} of $X$ into $Y$
